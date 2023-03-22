@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -16,14 +17,28 @@ const districtStyle = {
   margin: '1rem',
   padding: '1rem',
   borderRadius: '0.4rem',
-  color: 'whiteSmoke'
+  color: 'whiteSmoke',
+  // display: 'grid',
+// gridTemplateColumns: 'repeat(3, 1fr)'
 }
 
 function District(props){
+  const [power, setPower] = useState(1);
+  const boostPower = () => {
+    const newPower = power * 2;
+    setPower(newPower);
+  }
+  const reducePower = () => {
+    const newPower = power /2;
+    setPower(newPower);
+  }
   return (
     <div style={districtStyle}>
       <h2>{props.name}</h2>
       <p>{props.Speciality}</p>
+      <h1>Power: {power} </h1>
+      <button onClick={boostPower}>Boost The Power</button>
+      <button onClick={reducePower}>Reduce The Power</button>
     </div>
   )
 }
